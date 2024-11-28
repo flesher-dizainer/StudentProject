@@ -6,7 +6,8 @@ uses
     Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
     System.Classes, Vcl.Graphics,
     Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uEditor, uInfo, uCalc,
-    Vcl.StdCtrls, Vcl.Grids, Vcl.ValEdit;
+    Vcl.StdCtrls, Vcl.Grids, Vcl.ValEdit,
+    System.Generics.Collections;
 
 type
     TStudentProgram = class(TForm)
@@ -14,15 +15,26 @@ type
         inf: TMenuItem;
         editor: TMenuItem;
         Calc: TMenuItem;
-    LabelMainForm: TLabel;
+        LabelMainForm: TLabel;
         GroupBoxStudent: TGroupBox;
         LabelStudentFirstName: TLabel;
         LabelStudentLastName: TLabel;
         LabelStudentMiddleName: TLabel;
         GroupBox1: TGroupBox;
-    LabelTeacherLastName: TLabel;
-    LabelTeacherFirstName: TLabel;
-    LabelTeacherMiddleName: TLabel;
+        LabelTeacherLastName: TLabel;
+        LabelTeacherFirstName: TLabel;
+        LabelTeacherMiddleName: TLabel;
+        LabelSLN: TLabel;
+        LabelSFN: TLabel;
+        LabelSMN: TLabel;
+        LabelTLN: TLabel;
+        LabelTFN: TLabel;
+        LabelTMN: TLabel;
+        GroupBox2: TGroupBox;
+        Label1: TLabel;
+        Label2: TLabel;
+        LabelOrgName: TLabel;
+        LabelOrgAddr: TLabel;
         procedure FormCreate(Sender: TObject);
         procedure FormClose(Sender: TObject; var Action: TCloseAction);
         procedure editorClick(Sender: TObject);
@@ -33,7 +45,7 @@ type
         procedure ShowInfo;
         procedure ShowEditor;
         procedure ShowCalc;
-        procedure SetLabelsCaption;
+        procedure LoadLabelsCaption;
     public
         { Public declarations }
     end;
@@ -70,7 +82,7 @@ begin
     StudentInfo := TFormInfo.Create(nil);
     StudentEditor := TFormEditor.Create(nil);
     StudentCalc := TFormCalc.Create(nil);
-    SetLabelsCaption;
+    LoadLabelsCaption;
 end;
 
 procedure TStudentProgram.infClick(Sender: TObject);
@@ -93,15 +105,41 @@ begin
     StudentCalc.Show;
 end;
 
-procedure TStudentProgram.SetLabelsCaption;
+procedure TStudentProgram.LoadLabelsCaption;
+var
+    MyDictionary: TDictionary<String, String>;
 begin
-    self.LabelStudentLastName.Caption := 'Фамилия:';
-    self.LabelStudentFirstName.Caption := 'Имя:';
-    self.LabelStudentMiddleName.Caption := 'Отчество:';
+    try
+        self.LabelStudentLastName.Caption := 'Фамилия:';
+        self.LabelStudentFirstName.Caption := 'Имя:';
+        self.LabelStudentMiddleName.Caption := 'Отчество:';
 
-    self.LabelTeacherLastName.Caption := 'Фамилия:';
-    self.LabelTeacherFirstName.Caption := 'Имя:';
-    self.LabelTeacherMiddleName.Caption := 'Отчество:';
+        self.LabelTeacherLastName.Caption := 'Фамилия:';
+        self.LabelTeacherFirstName.Caption := 'Имя:';
+        self.LabelTeacherMiddleName.Caption := 'Отчество:';
+
+        MyDictionary := StudentEditor.LoadUserData(ExtractFilePath(ParamStr(0))
+          + 'Info.txt');
+        self.LabelSLN.Caption := MyDictionary.Items['StudentLastName'];
+        self.LabelSFN.Caption := MyDictionary.Items['StudentName'];
+        self.LabelSMN.Caption := MyDictionary.Items['StudentMiddleName'];
+
+        self.LabelTeacherLastName.Caption := MyDictionary.Items
+          ['TeacherLastName'];
+        self.LabelTeacherFirstName.Caption := MyDictionary.Items['TeacherName'];
+        self.LabelTeacherMiddleName.Caption := MyDictionary.Items
+          ['TeacherMiddleName'];
+
+        self.LabelOrgAddr.Caption := MyDictionary.Items['OrganizationAddres'];
+        self.LabelOrgName.Caption := MyDictionary.Items['OrganizationName'];
+
+    except
+        FreeAndNil(MyDictionary);
+    end;
+    if MyDictionary <> nil then
+        MyDictionary.Free;
+    // StudentEditor.SaveUsersData(ExtractFilePath(ParamStr(0))+'Info.txt',MyDictionary);
+
 end;
 
 end.
