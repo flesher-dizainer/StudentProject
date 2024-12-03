@@ -5,5 +5,5 @@ StudentMiddleName=Иваныч
 TeacherLastName=Миронова
 OrganizationName=МГУ
 StudentName=Иван
-StudentLastName=Иванов
+StudentLastName=Петров
 TeacherMiddleName=Ивановна

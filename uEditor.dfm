@@ -2,8 +2,8 @@ object FormEditor: TFormEditor
   Left = 0
   Top = 0
   Caption = 'FormEditor'
-  ClientHeight = 304
-  ClientWidth = 461
+  ClientHeight = 347
+  ClientWidth = 585
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,50 +12,257 @@ object FormEditor: TFormEditor
   Font.Style = []
   OldCreateOrder = False
   OnClose = FormClose
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
+  object GroupBoxStudent: TGroupBox
     Left = 8
-    Top = 8
-    Width = 140
-    Height = 19
-    Caption = #1048#1084#1103' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1103':'
+    Top = 1
+    Width = 273
+    Height = 178
+    Caption = #1044#1072#1085#1085#1099#1077' '#1086' '#1089#1090#1091#1076#1077#1085#1090#1077':'
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
     Font.Name = 'Tahoma'
     Font.Style = []
+    ParentBackground = False
+    ParentColor = False
     ParentFont = False
-  end
-  object Label2: TLabel
-    Left = 8
-    Top = 65
-    Width = 176
-    Height = 19
-    Caption = #1060#1072#1084#1080#1083#1080#1103' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1103':'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
-  object Edit1: TEdit
-    Left = 8
-    Top = 33
-    Width = 176
-    Height = 19
-    Ctl3D = False
-    ParentCtl3D = False
     TabOrder = 0
+    object LabelStudentFirstName: TLabel
+      Left = 16
+      Top = 73
+      Width = 35
+      Height = 19
+      Caption = #1048#1084#1103':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object LabelStudentLastName: TLabel
+      Left = 16
+      Top = 23
+      Width = 71
+      Height = 19
+      Caption = #1060#1072#1084#1080#1083#1080#1103':'
+      Color = clWhite
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
+    object LabelStudentMiddleName: TLabel
+      Left = 16
+      Top = 123
+      Width = 75
+      Height = 19
+      Caption = #1054#1090#1095#1077#1089#1090#1074#1086':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Edit1: TEdit
+      Left = 16
+      Top = 48
+      Width = 249
+      Height = 25
+      Ctl3D = False
+      ParentCtl3D = False
+      TabOrder = 0
+    end
+    object Edit2: TEdit
+      Left = 16
+      Top = 98
+      Width = 249
+      Height = 25
+      Ctl3D = False
+      ParentCtl3D = False
+      TabOrder = 1
+    end
+    object Edit3: TEdit
+      Left = 16
+      Top = 148
+      Width = 249
+      Height = 25
+      Ctl3D = False
+      ParentCtl3D = False
+      TabOrder = 2
+    end
   end
-  object Edit2: TEdit
-    Left = 8
-    Top = 90
-    Width = 176
-    Height = 19
-    Ctl3D = False
-    ParentCtl3D = False
+  object GroupBox1: TGroupBox
+    Left = 287
+    Top = 1
+    Width = 290
+    Height = 178
+    Caption = #1044#1072#1085#1085#1099#1077' '#1086' '#1087#1088#1077#1087#1086#1076#1072#1074#1072#1090#1077#1083#1077':'
+    Color = clBtnFace
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
     TabOrder = 1
+    object LabelTeacherLastName: TLabel
+      Left = 16
+      Top = 23
+      Width = 71
+      Height = 19
+      Caption = #1060#1072#1084#1080#1083#1080#1103':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object LabelTeacherFirstName: TLabel
+      Left = 16
+      Top = 73
+      Width = 35
+      Height = 19
+      Caption = #1048#1084#1103':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object LabelTeacherMiddleName: TLabel
+      Left = 16
+      Top = 123
+      Width = 75
+      Height = 19
+      Caption = #1054#1090#1095#1077#1089#1090#1074#1086':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Edit4: TEdit
+      Left = 16
+      Top = 48
+      Width = 256
+      Height = 25
+      Ctl3D = False
+      ParentCtl3D = False
+      TabOrder = 0
+    end
+    object Edit5: TEdit
+      Left = 16
+      Top = 98
+      Width = 256
+      Height = 25
+      Ctl3D = False
+      ParentCtl3D = False
+      TabOrder = 1
+    end
+    object Edit6: TEdit
+      Left = 16
+      Top = 148
+      Width = 257
+      Height = 25
+      Ctl3D = False
+      ParentCtl3D = False
+      TabOrder = 2
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 8
+    Top = 185
+    Width = 569
+    Height = 123
+    Caption = #1054#1088#1075#1072#1085#1080#1079#1072#1094#1080#1103
+    Color = clBtnFace
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 2
+    object Label1: TLabel
+      Left = 16
+      Top = 23
+      Width = 74
+      Height = 19
+      Caption = #1053#1072#1079#1074#1072#1085#1080#1077':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 16
+      Top = 73
+      Width = 50
+      Height = 19
+      Caption = #1040#1076#1088#1077#1089':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object LabelOrgName: TLabel
+      Left = 17
+      Top = 48
+      Width = 5
+      Height = 19
+    end
+    object LabelOrgAddr: TLabel
+      Left = 14
+      Top = 98
+      Width = 5
+      Height = 19
+    end
+    object Edit7: TEdit
+      Left = 16
+      Top = 42
+      Width = 539
+      Height = 25
+      Ctl3D = False
+      ParentCtl3D = False
+      TabOrder = 0
+    end
+    object Edit8: TEdit
+      Left = 16
+      Top = 95
+      Width = 539
+      Height = 25
+      Ctl3D = False
+      ParentCtl3D = False
+      TabOrder = 1
+    end
+  end
+  object Button1: TButton
+    Left = 8
+    Top = 314
+    Width = 75
+    Height = 25
+    Caption = #1047#1072#1087#1080#1089#1072#1090#1100
+    TabOrder = 3
+    OnClick = Button1Click
   end
 end
