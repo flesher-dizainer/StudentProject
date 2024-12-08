@@ -35,6 +35,7 @@ object StudentProgram: TStudentProgram
     Width = 233
     Height = 178
     Caption = #1044#1072#1085#1085#1099#1077' '#1086' '#1089#1090#1091#1076#1077#1085#1090#1077':'
+    Color = clCream
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -113,6 +114,7 @@ object StudentProgram: TStudentProgram
     Width = 265
     Height = 178
     Caption = #1044#1072#1085#1085#1099#1077' '#1086' '#1087#1088#1077#1087#1086#1076#1072#1074#1072#1090#1077#1083#1077':'
+    Color = clCream
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -207,6 +209,7 @@ object StudentProgram: TStudentProgram
     Width = 504
     Height = 123
     Caption = #1054#1088#1075#1072#1085#1080#1079#1072#1094#1080#1103
+    Color = clCream
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16

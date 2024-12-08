@@ -124,11 +124,9 @@ begin
         self.LabelSFN.Caption := MyDictionary.Items['StudentName'];
         self.LabelSMN.Caption := MyDictionary.Items['StudentMiddleName'];
 
-        self.LabelTeacherLastName.Caption := MyDictionary.Items
-          ['TeacherLastName'];
-        self.LabelTeacherFirstName.Caption := MyDictionary.Items['TeacherName'];
-        self.LabelTeacherMiddleName.Caption := MyDictionary.Items
-          ['TeacherMiddleName'];
+        self.LabelTLN.Caption := MyDictionary.Items['TeacherLastName'];
+        self.LabelTFN.Caption := MyDictionary.Items['TeacherName'];
+        self.LabelTMN.Caption := MyDictionary.Items['TeacherMiddleName'];
 
         self.LabelOrgAddr.Caption := MyDictionary.Items['OrganizationAddres'];
         self.LabelOrgName.Caption := MyDictionary.Items['OrganizationName'];

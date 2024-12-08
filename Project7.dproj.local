@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.042,=D:\distr\delphi_proj\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.540,D:\distr\delphi_proj\Unit1.pas=D:\distr\delphi_proj\uInfo.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.525,=D:\distr\delphi_proj\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.300,D:\distr\delphi_proj\Unit1.pas=D:\distr\delphi_proj\uCalc.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.300,D:\distr\delphi_proj\Unit1.dfm=D:\distr\delphi_proj\uCalc.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.540,D:\distr\delphi_proj\Unit1.dfm=D:\distr\delphi_proj\uInfo.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.370,D:\distr\delphi_proj\Unit1.dfm=D:\distr\delphi_proj\uStudent.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.370,D:\distr\delphi_proj\Unit1.pas=D:\distr\delphi_proj\uStudent.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.439,D:\distr\delphi_proj\uStudent.dfm=D:\distr\delphi_proj\uEditor.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.813,C:\Users\HMC-DIAG\Documents\RAD Studio\Projects\Unit8.pas=D:\distr\delphi_proj\Student.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.927,=C:\Users\HMC-DIAG\Documents\RAD Studio\Projects\Unit8.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.848,C:\Users\HMC-DIAG\Documents\RAD Studio\Projects\Project7.dproj=D:\distr\delphi_proj\Project7.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.300,D:\distr\delphi_proj\uCalc.pas=D:\distr\delphi_proj\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.848,D:\distr\delphi_proj\Project7.dproj=C:\Users\HMC-DIAG\Documents\RAD Studio\Projects\Project7.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.439,D:\distr\delphi_proj\uEditor.pas=D:\distr\delphi_proj\uStudent.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.540,D:\distr\delphi_proj\uInfo.dfm=D:\distr\delphi_proj\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.370,D:\distr\delphi_proj\uStudent.dfm=D:\distr\delphi_proj\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.439,D:\distr\delphi_proj\uEditor.dfm=D:\distr\delphi_proj\uStudent.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.300,D:\distr\delphi_proj\uCalc.dfm=D:\distr\delphi_proj\Unit1.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.144,=D:\distr\delphi_proj\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.813,C:\Users\HMC-DIAG\Documents\RAD Studio\Projects\Unit8.dfm=D:\distr\delphi_proj\Student.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.439,D:\distr\delphi_proj\uStudent.pas=D:\distr\delphi_proj\uEditor.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.370,D:\distr\delphi_proj\uStudent.pas=D:\distr\delphi_proj\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.813,D:\distr\delphi_proj\Student.pas=C:\Users\HMC-DIAG\Documents\RAD Studio\Projects\Unit8.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.927,=C:\Users\HMC-DIAG\Documents\RAD Studio\Projects\Unit8.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.813,D:\distr\delphi_proj\Student.dfm=C:\Users\HMC-DIAG\Documents\RAD Studio\Projects\Unit8.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.525,=D:\distr\delphi_proj\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.042,=D:\distr\delphi_proj\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.540,D:\distr\delphi_proj\uInfo.pas=D:\distr\delphi_proj\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>
