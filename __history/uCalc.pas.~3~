@@ -1,0 +1,286 @@
+unit uCalc;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, System.Math, Vcl.Graphics, StrUtils, System.Types,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TMatrix = array of array of double;
+  TArrayDouble = array of double;
+
+type
+  data_matrix = record
+    Matrix: TMatrix;
+    ArrayDouble: TArrayDouble;
+  end;
+
+  TFormCalc = class(TForm)
+    Memo1: TMemo;
+    Button1: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    Edit1: TEdit;
+    Label3: TLabel;
+    Edit2: TEdit;
+    procedure Button1Click(Sender: TObject);
+    function GaussianElimination(var A: TMatrix; var B: TArrayDouble;
+      N: Integer): TArrayDouble;
+    function get_TMatrix(memo_lines: TMemo): TMatrix;
+    function get_TArrayDouble(edit: TEdit): TArrayDouble;
+    function StrToFloatMod(value: string): real;
+    function MatrixCalc(Matrix: TMatrix; ArrDouble: TArrayDouble): TArrayDouble;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormCalc: TFormCalc;
+
+implementation
+
+{$R *.dfm}
+
+// Процедура, реализующая метод Гаусса
+function TFormCalc.GaussianElimination(var A: TMatrix; var B: TArrayDouble;
+  N: Integer): TArrayDouble;
+
+var
+  i, j, k: Integer;
+  factor: real;
+begin
+  setlength(result, N);
+  // Приведение матрицы к треугольному виду
+  for i := 0 to N - 2 do
+    for j := i + 1 to N - 1 do
+    begin
+      factor := A[j, i] / A[i, i];
+      for k := i to N - 1 do
+        A[j, k] := A[j, k] - factor * A[i, k];
+      B[j] := B[j] - factor * B[i];
+    end;
+
+  // Обратный ход для нахождения решения
+  for i := N - 1 downto 0 do
+  begin
+    result[i] := B[i];
+    for j := i + 1 to N - 1 do
+      result[i] := result[i] - A[i, j] * result[j];
+    result[i] := result[i] / A[i, i];
+  end;
+end;
+
+procedure TFormCalc.Button1Click(Sender: TObject);
+var
+  Matrix: TMatrix;
+  R_Array: TArrayDouble;
+  Res: TArrayDouble;
+  i: real;
+begin
+  Matrix := get_TMatrix(self.Memo1);
+  R_Array := get_TArrayDouble(self.Edit1);
+  Res := MatrixCalc(Matrix, R_Array);
+  // Res := GaussianElimination(matrix, R_Array, length(matrix));
+  Edit2.Text := '';
+  // выводим результат
+  for i in Res do
+    Edit2.Text := Edit2.Text + ' ' + FloatToStr(i);
+
+end;
+
+function TFormCalc.get_TMatrix(memo_lines: TMemo): TMatrix;
+var
+  i: Integer;
+  str_line: string;
+  arr_list: TStringDynArray;
+begin
+  i := 0;
+  setlength(result, 0);
+  for str_line in memo_lines.Lines do
+  begin
+    setlength(result, length(result) + 1);
+    arr_list := SplitString(str_line, ' ');
+    setlength(result[length(result) - 1], length(arr_list));
+    for i := 0 to length(arr_list) - 1 do
+      result[length(result) - 1][i] := StrToFloatMod(arr_list[i]);
+  end;
+
+end;
+
+function TFormCalc.get_TArrayDouble(edit: TEdit): TArrayDouble;
+var
+  i: Integer;
+  arr_list: TStringDynArray;
+begin
+  arr_list := SplitString(edit.Text, ' ');
+  setlength(result, length(arr_list));
+  for i := 0 to length(arr_list) - 1 do
+    result[i] := StrToFloatMod(arr_list[i]);
+end;
+
+function TFormCalc.StrToFloatMod(value: string): real;
+begin
+  try
+    result := StrToFloat(StringReplace(value, '.', ',',
+      [rfReplaceAll, rfIgnoreCase]));
+    exit;
+  except
+    result := StrToFloat(StringReplace(value, '.', ',',
+      [rfReplaceAll, rfIgnoreCase]));
+    exit;
+    result := StrToFloat(StringReplace(value, ',', '.',
+      [rfReplaceAll, rfIgnoreCase]));
+    exit;
+  end;
+end;
+
+function swap_line_matrix(Matrix: TMatrix; row1: Integer; row2: Integer;
+  R_line: TArrayDouble): data_matrix;
+var
+  tmp: double;
+  i: Integer;
+begin
+  for i := 0 to length(Matrix[0]) - 1 do
+  begin
+    tmp := Matrix[row1][i];
+    Matrix[row1][i] := Matrix[row2][i];
+    Matrix[row2][i] := tmp;
+  end;
+  tmp := R_line[row1];
+  R_line[row1] := R_line[row2];
+  R_line[row2] := tmp;
+  result.Matrix := Matrix;
+  result.ArrayDouble := R_line;
+end;
+
+function MinLineToTop(Matrix: TMatrix; ArrDouble: TArrayDouble): data_matrix;
+var
+  i: Integer;
+  flag_swap: boolean;
+  ret: data_matrix;
+begin
+  while True do
+  begin
+    flag_swap := False;
+    for i := 0 to length(Matrix) - 2 do
+    begin
+      if Matrix[i][0] > Matrix[i + 1][0] then
+      begin
+        ret := swap_line_matrix(Matrix, i, i + 1, ArrDouble);
+        Matrix := ret.Matrix;
+        ArrDouble := ret.ArrayDouble;
+        flag_swap := True;
+      end;
+
+    end;
+    if not flag_swap then
+      break;
+
+  end;
+  result.Matrix := Matrix;
+  result.ArrayDouble := ArrDouble;
+end;
+
+// -----------------------------
+function Triangularize(Matrix: TMatrix; B: TArrayDouble): data_matrix;
+var
+  i, j, k: Integer;
+  factor: double;
+
+begin
+  for i := Low(Matrix) to High(Matrix) - 1 do
+  begin
+    for j := i + 1 to High(Matrix) do
+    begin
+      factor := Matrix[j][i] / Matrix[i][i];
+
+      for k := i to High(Matrix) do
+      begin
+        Matrix[j][k] := Matrix[j][k] - factor * Matrix[i][k];
+        B[j] := B[j] - factor * B[i];
+        // Добавляем умножение на factor к правой части СЛАУ
+      end;
+    end;
+  end;
+
+  result.Matrix := Matrix;
+  result.ArrayDouble := B;
+end;
+
+// вычисляем определитель основной матрицы
+function Determinant(Matrix: TMatrix): double;
+var
+  i, T, c: Integer;
+  posit_value, neg_value, summ_poz, summ_neg:real;
+  index_x, index_y : integer;
+  array_tmp_pos, array_tmp_neg, array_pos, array_neg:array of real;
+begin
+  result := 0;
+  if length(Matrix) = 0 then
+    exit;
+  if (length(Matrix) <> length(Matrix[0])) then
+    exit;
+
+  //цикл по матрице
+  for I := 0 to length(Matrix) - 1 do  begin
+    setlength(array_tmp_pos, 0);
+    setlength(array_tmp_neg, 0);
+    //принимаем значения матрицы
+    for T := 0 to length(Matrix[I]) - 1 do begin
+    //t - строка
+    //i - столбец
+
+        index_x:=I+T;
+        //index_y:=
+//      [0,0] [1,1] [2,2]
+//      [0,1] [1,2] [2,0]
+//      [0,2] [1,0] [2,1]
+//      index_y:=length(matrix[i])- 1 - t;
+//      if index_y < 0 then index_y:= index_y + length(Matrix[I]);
+//      setlength(array_tmp_neg, length(array_tmp_neg)+1);
+//      posit_value:=Matrix[t][index_y];
+//      array_tmp_neg[t]:=posit_value;
+//
+//      if index_x > length(Matrix[I])-1 then  index_x:=index_x - length(Matrix[I])-1;
+        setlength(array_tmp_pos, length(array_tmp_pos)+1);
+        posit_value:=Matrix[t][index_x];
+        array_tmp_pos[t]:=posit_value;
+    end;
+    //умножаем выбранные элементы
+//    setlength(array_pos, length(array_pos)+1);
+//    posit_value:=1;
+//    for c := 0 to length(array_tmp_pos)-1 do posit_value:=posit_value*array_tmp_pos[c];
+//    array_pos[i]:=posit_value;
+//
+//    setlength(array_neg, length(array_neg)+1);
+//    posit_value:=1;
+//    for c := 0 to length(array_tmp_neg)-1 do posit_value:=posit_value*array_tmp_neg[c];
+//    array_neg[i]:=posit_value;
+  end;
+//  posit_value:=0;
+//  for c := 0 to length(array_pos)-1 do posit_value:=posit_value+array_pos[c];
+//  result:=posit_value;
+//  posit_value:=0;
+//  for c := 0 to length(array_neg)-1 do posit_value:=posit_value+array_neg[c];
+//  result:= result - posit_value;
+end;
+
+function TFormCalc.MatrixCalc(Matrix: TMatrix; ArrDouble: TArrayDouble)
+  : TArrayDouble;
+var
+  A, B: Integer;
+  koeff, tmp_0, determ: real;
+  ret: data_matrix;
+begin
+//  // составляем матрицу так, чтоб минимальное первое число было вверху
+//  ret := MinLineToTop(Matrix, ArrDouble);
+//  Matrix := ret.Matrix;
+//  ArrDouble := ret.ArrayDouble;
+    determ:=Determinant(Matrix);
+end;
+
+end.

@@ -10,8 +10,6 @@ object FormCalc: TFormCalc
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
-  PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
     Left = 8
@@ -57,6 +55,12 @@ object FormCalc: TFormCalc
     Top = 48
     Width = 553
     Height = 121
+    Lines.Strings = (
+      '2 3 -1 4 -5'
+      '-1 1 2 -3 4'
+      '3 2 -1 1 -2'
+      '4 5 -2 3 -1'
+      '5 6 -3 4 -2')
     TabOrder = 0
   end
   object Button1: TButton
@@ -74,6 +78,7 @@ object FormCalc: TFormCalc
     Width = 545
     Height = 21
     TabOrder = 2
+    Text = '1 2 3 4 5'
   end
   object Edit2: TEdit
     Left = 8

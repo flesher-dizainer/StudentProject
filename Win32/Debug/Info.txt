@@ -1,0 +1,9 @@
+[Info]
+OrganizationAddres=Адрес
+TeacherName=Мария
+StudentMiddleName=Иваныч
+TeacherLastName=Миронова
+OrganizationName=МГУ
+StudentName=Иван
+StudentLastName=Петров
+TeacherMiddleName=Ивановна
